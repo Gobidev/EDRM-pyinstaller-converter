@@ -98,7 +98,8 @@ def run():
               "from utils.csv_reader import *", "from utils.edsm import is_known",
               "from views.inputview import start_input_window", "from main.EDRouteManager import loop_refresh",
               "import threading", "import time", "import os", "from urllib.request import urlopen", "import json",
-              "import tkinter as tk", "from tkinter import messagebox", "from tkinter import filedialog"
+              "import tkinter as tk", "from tkinter import messagebox", "from tkinter import filedialog",
+              "import clipboard"
               ]
 
     replace = {"file='../views/logo.gif'": "file='logo.gif'", "../config/config.yml": "config.yml",
@@ -118,8 +119,9 @@ def run():
     for element in replace:
         content_string = content_string.replace(element, replace[element])
 
-    imports = ["import threading", "import time", "import os", "from urllib.request import urlopen", "import json",
-               "import tkinter as tk", "from tkinter import messagebox", "from tkinter import filedialog"]
+    imports = ["import threading", "import time", "import clipboard", "from urllib.request import urlopen",
+               "import json", "import tkinter as tk", "from tkinter import messagebox",
+               "from tkinter import filedialog"]
 
     final_string = ""
     for n in imports:
@@ -127,7 +129,7 @@ def run():
     final_string += "\n\n"
     final_string += content_string
 
-    output = open("output.py", "w")
+    output = open("EDRouteManager_v0.1.2-alpha.py", "w")
     output.write(final_string)
     output.close()
 
